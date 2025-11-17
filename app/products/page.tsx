@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useState, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 
@@ -9,6 +10,17 @@ import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
 
 export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="p-10 text-center">Loading...</div>}>
+      <ProductsContent />
+    </Suspense>
+  );
+}
+
+// ==============================
+// ⭐ REAL PRODUCT PAGE CONTENT
+// ==============================
+function ProductsContent() {
   const searchParams = useSearchParams();
 
   const [sortBy, setSortBy] = useState("popular");
@@ -25,12 +37,14 @@ export default function ProductsPage() {
   const filteredProducts = useMemo(() => {
     let filtered = [...products];
 
-    // Category
+    // Category Filter
     if (categoryFilter) {
-      filtered = filtered.filter((p) => p.category === categoryFilter);
+      filtered = filtered.filter((p) =>
+        p.category.toLowerCase() === categoryFilter.toLowerCase()
+      );
     }
 
-    // Search
+    // Search Filter
     if (searchTerm) {
       filtered = filtered.filter((p) =>
         p.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -42,16 +56,18 @@ export default function ProductsPage() {
       (p) => p.price >= priceRange[0] && p.price <= priceRange[1]
     );
 
-    // Material
+    // Material Filter
     if (selectedMaterial.length > 0) {
       filtered = filtered.filter((p) =>
         selectedMaterial.includes(p.material)
       );
     }
 
-    // Tribe
+    // Tribe Filter
     if (selectedTribe.length > 0) {
-      filtered = filtered.filter((p) => selectedTribe.includes(p.tribe));
+      filtered = filtered.filter((p) =>
+        selectedTribe.includes(p.tribe)
+      );
     }
 
     // Sorting
@@ -71,10 +87,13 @@ export default function ProductsPage() {
     sortBy,
   ]);
 
-  // Unique Filters
+  // Generate Unique Filter Values
   const uniqueMaterials = Array.from(new Set(products.map((p) => p.material)));
   const uniqueTribes = Array.from(new Set(products.map((p) => p.tribe)));
 
+  // ============================
+  // 🖼️ UI
+  // ============================
   return (
     <>
       <Navbar />
@@ -88,16 +107,15 @@ export default function ProductsPage() {
         </h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* ===============================
-              🔧 SIDEBAR — FILTERS
+
+          {/* ==============================
+              🔧 SIDEBAR FILTERS
           =============================== */}
           <aside className="lg:col-span-1 space-y-8">
+
             {/* Search */}
             <div>
-              <label
-                className="block font-semibold mb-4"
-                style={{ color: "var(--foreground)" }}
-              >
+              <label className="block font-semibold mb-4">
                 Search
               </label>
               <input
@@ -111,10 +129,7 @@ export default function ProductsPage() {
 
             {/* Price Range */}
             <div>
-              <label
-                className="block font-semibold mb-4"
-                style={{ color: "var(--foreground)" }}
-              >
+              <label className="block font-semibold mb-4">
                 Price Range
               </label>
 
@@ -124,22 +139,19 @@ export default function ProductsPage() {
                 max="10000"
                 value={priceRange[1]}
                 onChange={(e) =>
-                  setPriceRange([priceRange[0], parseInt(e.target.value)])
+                  setPriceRange([priceRange[0], Number(e.target.value)])
                 }
                 className="w-full"
               />
 
-              <p className="text-sm mt-2" style={{ color: "var(--muted)" }}>
+              <p className="text-sm mt-2">
                 ₹{priceRange[0]} - ₹{priceRange[1]}
               </p>
             </div>
 
-            {/* Material Filter */}
+            {/* Material */}
             <div>
-              <label
-                className="block font-semibold mb-4"
-                style={{ color: "var(--foreground)" }}
-              >
+              <label className="block font-semibold mb-4">
                 Material
               </label>
 
@@ -159,22 +171,16 @@ export default function ProductsPage() {
                               selectedMaterial.filter((m) => m !== material)
                             )
                       }
-                      className="w-4 h-4"
                     />
-                    <span style={{ color: "var(--foreground)" }}>
-                      {material}
-                    </span>
+                    <span>{material}</span>
                   </label>
                 ))}
               </div>
             </div>
 
-            {/* Tribe Filter */}
+            {/* Tribe */}
             <div>
-              <label
-                className="block font-semibold mb-4"
-                style={{ color: "var(--foreground)" }}
-              >
+              <label className="block font-semibold mb-4">
                 Tribe
               </label>
 
@@ -194,22 +200,21 @@ export default function ProductsPage() {
                               selectedTribe.filter((t) => t !== tribe)
                             )
                       }
-                      className="w-4 h-4"
                     />
-                    <span style={{ color: "var(--foreground)" }}>{tribe}</span>
+                    <span>{tribe}</span>
                   </label>
                 ))}
               </div>
             </div>
           </aside>
 
-          {/* ===============================
+          {/* ==============================
               🛍️ PRODUCT LIST
           =============================== */}
           <main className="lg:col-span-3">
-            {/* Sort Options */}
+            {/* Sorting */}
             <div className="mb-8 flex justify-between items-center">
-              <p style={{ color: "var(--muted)" }}>
+              <p>
                 Showing {filteredProducts.length} products
               </p>
 
@@ -233,12 +238,7 @@ export default function ProductsPage() {
               </div>
             ) : (
               <div className="text-center py-12">
-                <p
-                  className="text-lg"
-                  style={{ color: "var(--muted)" }}
-                >
-                  No products found matching your filters.
-                </p>
+                <p className="text-lg">No products found matching your filters.</p>
               </div>
             )}
           </main>
