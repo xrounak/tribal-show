@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-serif: 'Playfair Display', 'Playfair Display Fallback';
+  
+  /* Map color tokens to use CSS variables for Tailwind */
+  --color-background: #faf8f6;
+  --color-foreground: #2d2416;
+  --color-primary-brown: #8b6f47;
+  --color-primary-orange: #d97d4a;
+  --color-accent-green: #5a7c59;
+  --color-accent-light: #e8dfd7;
+  --color-muted: #a89f95;
+  --color-border: #e0d5c7;
+  --color-error: #c85a54;
+  --color-success: #5a7c59;
+  --color-light-bg: #f5f0e8;
+  
+  --radius: 4px;
+}
+
+@layer base {
+  :root {
+    --background: #faf8f6;
+    --foreground: #2d2416;
+    --primary-brown: #8b6f47;
+    --primary-orange: #d97d4a;
+    --accent-green: #5a7c59;
+    --accent-light: #e8dfd7;
+    --muted: #a89f95;
+    --border: #e0d5c7;
+    --error: #c85a54;
+    --success: #5a7c59;
+    --light-bg: #f5f0e8;
+  }
+
+  body {
+    background-color: #faf8f6;
+    color: #2d2416;
+    font-family: 'Geist', system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    color: #2d2416;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    padding: 0.75rem 1.5rem;
+    background-color: #8b6f47;
+    color: #faf8f6;
+    border-radius: 0;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+
+  .btn-primary:hover {
+    background-color: #d97d4a;
+  }
+
+  .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #8b6f47;
+    color: #8b6f47;
+    border-radius: 0;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background-color: #8b6f47;
+    color: #faf8f6;
+  }
+
+  .card-tribal {
+    background-color: white;
+    border: 1px solid #e0d5c7;
+    padding: 1.5rem;
+    transition: box-shadow 0.2s;
+  }
+
+  .card-tribal:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  .section-header {
+    font-size: 2.25rem;
+    font-family: 'Playfair Display', serif;
+    color: #2d2416;
+    margin-bottom: 3rem;
+    text-wrap: balance;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e0d5c7;
+    background-color: white;
+    color: #2d2416;
+    border-radius: 0;
+    transition: all 0.2s;
+  }
+
+  .input-field:focus {
+    outline: none;
+    border-color: #8b6f47;
+    box-shadow: 0 0 0 1px #8b6f47;
+  }
+}
