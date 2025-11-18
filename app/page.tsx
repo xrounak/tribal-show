@@ -34,22 +34,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Categories Section */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="section-header text-center">Featured Categories</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {categories.slice(0, 6).map((category) => (
-              <CategoryCard
-                key={category.name}
-                name={category.name}
-                image={`/placeholder.svg?height=400&width=400&query=${category.name.toLowerCase()}`}
-                count={category.count}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Featured Products */}
       <section className="py-16 md:py-24" style={{ backgroundColor: 'var(--background)' }}>
@@ -64,6 +48,24 @@ export default function Home() {
             <Link href="/products" className="btn-primary">
               View All Products
             </Link>
+          </div>
+        </div>
+      </section>
+
+      
+    {/* Categories Section */}
+      <section className="py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="section-header text-center">Featured Categories</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {categories.slice(0, 6).map((category) => (
+              <CategoryCard
+                key={category.name}
+                name={category.name}
+                image={`/placeholder.svg?height=400&width=400&query=${category.name.toLowerCase()}`}
+                count={category.count}
+              />
+            ))}
           </div>
         </div>
       </section>
