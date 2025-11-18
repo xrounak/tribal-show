@@ -15,7 +15,7 @@ export const products: Product[] = [
   {
     id: '1',
     title: 'Kudrum Wild Roselle Forest Pickle',
-    price: 3500,
+    price: 200,
     image: '/Kudurumpickle.jpg',
     category: 'Pickle',
     tribe: 'Santhal',
@@ -27,7 +27,7 @@ export const products: Product[] = [
   {
     id: '2',
     title: 'Matha Gunda Forest Leaf Powder',
-    price: 2200,
+    price: 200,
     image: '/Mathapowder.jpg',
     category: 'Powder',
     tribe: 'Ho',
@@ -39,7 +39,7 @@ export const products: Product[] = [
   {
     id: '3',
     title: 'Mahua Energy Laddu',
-    price: 4800,
+    price: 250,
     image: '/Mahualaddo.jpg',
     category: 'Laddu',
     tribe: 'Oraon',
@@ -51,7 +51,7 @@ export const products: Product[] = [
   {
     id: '4',
     title: 'Kudrum Jam',
-    price: 1500,
+    price: 200,
     image: '/Kudurumjam.jpg',
     category: 'Jam',
     tribe: 'Munda',
@@ -60,20 +60,9 @@ export const products: Product[] = [
     artisanName: 'Vikram Das',
     artisanBio: 'Vikram sources .',
   },
+
   {
     id: '5',
-    title: 'Handcrafted Wooden Statue',
-    price: 2800,
-    image: '/wooden-statue-tribal-carving.jpg',
-    category: 'Handicrafts',
-    tribe: 'Santhal',
-    material: 'Wood',
-    description: 'Hand-carved wooden statue depicting tribal dancers. Made from sustainably sourced wood.',
-    artisanName: 'Ravi Tiwari',
-    artisanBio: 'Ravi is a talented wood carver who brings stories and traditions to life through his sculptures.',
-  },
-  {
-    id: '6',
     title: 'Organic Forest Honey',
     price: 800,
     image: '/organic-forest-honey-tribal.jpg',
