@@ -21,7 +21,7 @@ export default function Home() {
             Celebrate the Spirit of Jharkhand
           </h1>
           <p className="text-xl mb-8 max-w-2xl mx-auto" style={{ color: 'var(--muted)' }}>
-            Discover authentic tribal crafts and artisanal goods from the heart of Jharkhand. Every product tells a story of tradition, skill, and heritage.
+            Discover tribal cousine & food from the heart of Jharkhand. Every product tells a story of tradition, skill, and heritage.
           </p>
           <div className="flex gap-4 justify-center">
             <Link href="/products" className="btn-primary">
